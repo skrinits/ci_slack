@@ -43,6 +43,7 @@ require 'ci_slack/rspec/notifier'
 ### In code executed in a CI step:
 
 ```ruby
+require_relative '../../config/initializers/ci_slack'
 require 'ci_slack/messager'
 
 CiSlack::Messager.new.send(message_to_slack_channel)
