@@ -3,12 +3,6 @@ require 'ci_slack'
 
 module CiSlack
   class Messager
-    attr_reader :client, :project
-
-    def initialize
-      @client = ::Slack::Notifier.new(webhook, channel: channel, username: bot_name)
-    end
-
     def send(message)
       return unless ENV[ci_computer.to_s]
 
@@ -33,6 +27,10 @@ module CiSlack
 
     def last_git_log
       `git log -1 --pretty='%an||%s'`.split('||').map(&:strip)
+    end
+
+    def client
+      @client ||= ::Slack::Notifier.new(webhook, channel: channel, username: bot_name)
     end
   end
 end
