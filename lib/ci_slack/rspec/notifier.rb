@@ -45,6 +45,6 @@ module CiSlack
 end
 
 RSpec.configure do |config|
-  config.fail_fast = true
+  config.fail_fast = !ENV[CiSlack.configuration.ci_computer].nil?
   config.reporter.register_listener CiSlack::Rspec::Notifier.new, :example_failed
 end
