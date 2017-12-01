@@ -21,7 +21,7 @@ class MessagerTest < ActiveSupport::TestCase
 
     messager = CiSlack::Messager.new
 
-    assert_nil(messager.send('message'))
+    assert_nil(messager.deliver('message'))
   end
 
   test "computer with ci: ENV['CI'] is present" do
@@ -30,7 +30,7 @@ class MessagerTest < ActiveSupport::TestCase
     messager = CiSlack::Messager.new
 
     assert_raise Slack::Notifier::APIError do
-      messager.send('message')
+      messager.deliver('message')
     end
   end
 end

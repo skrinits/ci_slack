@@ -11,7 +11,7 @@ module CiSlack
       end
 
       def example_failed(notification)
-        messager.send(Example.new(notification.example).to_s)
+        messager.deliver(Example.new(notification.example).to_s, :failed)
       end
 
       class Example

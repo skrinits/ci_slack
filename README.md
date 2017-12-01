@@ -11,7 +11,10 @@ CiSlack.configure do |config|
   config.webhook = 'ci webhook'
   config.project = 'your project'
   config.slack_names = { mapping to slack names }
-  config.icon = 'slack icon (default "failed")'
+  config.failed_icon = 'slack icon (default "failed")'
+  config.success_icon = 'slack icon (default "successful")'
+  config.failed_title = 'slack icon (default "CI FAILED!")'
+  config.success_title = 'slack icon (default "SUCCESS")'
   config.channel = 'slack channel (default "ci")'
   config.ci_computer = 'check name for ci computer (default "CI")'
   config.bot_name = 'name for sender to slack (default "CI BOT")'
@@ -46,5 +49,15 @@ require 'ci_slack/rspec/notifier'
 require_relative '../../config/initializers/ci_slack'
 require 'ci_slack/messager'
 
-CiSlack::Messager.new.send(message_to_slack_channel)
+CiSlack::Messager.new.deliver(message_to_slack_channel, :failed)
+```
+
+### In the task for a delivery information about success a pass of CI:
+```ruby
+task :success_ci do
+  require_relative '../../config/initializers/ci_slack'
+  require 'ci_slack/messager'
+
+  CiSlack::Messager.new.deliver
+end
 ```
