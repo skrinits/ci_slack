@@ -11,6 +11,7 @@ CiSlack.configure do |config|
   config.webhook = 'ci webhook'
   config.project = 'your project'
   config.slack_names = { mapping to slack names }
+  config = [skip who need not a message about a success pass of ci]
   config.failed_icon = 'slack icon (default "failed")'
   config.success_icon = 'slack icon (default "successful")'
   config.failed_title = 'slack icon (default "CI FAILED!")'

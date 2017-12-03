@@ -2,6 +2,8 @@ $:.push File.expand_path('../lib', __FILE__)
 
 require 'ci_slack/version'
 
+rails_version = ['>= 4.2', '< 5.2']
+
 Gem::Specification.new do |s|
   s.name        = 'ci_slack'
   s.version     = CiSlack::VERSION
@@ -13,7 +15,8 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
 
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
-  s.test_files = Dir['test/**/*']
+  s.test_files = Dir['spec/**/*']
 
   s.add_dependency 'slack-notifier', '~> 2.3.1'
+  s.add_development_dependency 'rspec'
 end

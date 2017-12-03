@@ -3,7 +3,8 @@ module CiSlack
     attr_accessor :webhook, :channel, :ci_computer,
                   :bot_name, :project, :slack_names,
                   :failed_icon, :success_icon,
-                  :failed_title, :success_title
+                  :failed_title, :success_title,
+                  :skip_success_message
 
     def initialize
       @webhook = ''
@@ -17,6 +18,8 @@ module CiSlack
       @success_icon = 'successful'
       @failed_title = 'CI FAILED!'
       @success_title = 'SUCCESS'
+
+      @skip_success_message = []
     end
   end
 end
